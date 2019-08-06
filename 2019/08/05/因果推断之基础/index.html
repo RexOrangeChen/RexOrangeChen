@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <title>牙糖 | Mr. Jiao</title>
-  <meta name="keywords" content=" 小说 ">
-  <meta name="description" content="牙糖 | Mr. Jiao">
+  <title>因果推断之基础 | Mr. Jiao</title>
+  <meta name="keywords" content=" 统计 ">
+  <meta name="description" content="因果推断之基础 | Mr. Jiao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="此文为Causal Inference学习笔记其一,参考教材为Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction(Cambridge University Press),作者为Guido W. Imbens和Donald B. Rubin. 为了快速理解概念,也训练自己分辨的例子,我将引">
 <meta name="keywords" content="统计">
@@ -242,9 +242,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-牙糖" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-因果推断之基础" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">牙糖</h1>
+        <h1 class="article-title">因果推断之基础</h1>
     
     <div class="article-meta">
         
@@ -253,19 +253,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">小说</a>
+            <a href="javascript:" class="color3">统计</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-08-02 10:18:29'>2019-08-01 22:17</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-06 16:36:54'>2019-08-06 03:06</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:656</span>
+        <span>字数:999</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -310,14 +310,26 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>好不容易找到的新工作，据说正好公司有个人不辞而别，一个月多不出现，正好叫我顶了他的活。在我看来，上一个 不辞而别的家伙真是福浅，隔壁工位是一个漂亮小姐姐，在漂亮小姐姐旁边，工作都变得愉快起来。</p>
-<p>到岗的第一天，我就认识了我的同桌，唐琬。是一个很甜很甜的小姐姐，笑起来的时候，眼睛眯起来都可以融化我的心。工作的时候，借故侧过头去看她，俊俏的小鼻头，以及嫩白的肌肤，发着迷人的光，钩住了我的魂。最让我觉得可爱的是，一天到晚，唐琬都含着糖，说话的时候，因为嘴里有糖，含含糊糊的，简直萌走了我的命。即使因为要工作，听着她嘴里的糖在移动，与牙齿碰撞的声音，都能给我甜甜的好心情。</p>
-<p>唐琬没有男朋友，我起了心思，在午休的时候，和别的同事旁敲侧击，套到了好多信息。我要追求她。</p>
-<p>从约饭到看电影，再到一同周末出游，我们间的关系迅速地拉近。但有一个问题，我一直很好奇，就是她一直在吃的是什么糖，她却总是笑笑，不告诉我，说我以后会知道的。</p>
-<p>今天，是个特别的日子，我好像有机会上垒。在烛光晚餐之后，唐琬低着头带着笑，问我要不要去她家里坐坐。作为一个聪明人，我很快明白她的意思，没有拒绝。到了她家，在暮色中，接下来的描述根据国家相关法律法规略去。</p>
-<p>第二天醒来，我发现自己被绑在一个椅子上。我不知道发生了什么，以为唐琬在和我开玩笑，或者想玩刺激的，我和她，却没有回应。我侧过头去四周，发觉旁边也坐了个兄弟，嘴里戴着口腔固定器，颓唐地低着头。</p>
-<p>唐琬开门进来了，拿了个钳子，托起了旁边人的脸，拔掉了那人一颗牙，用水冲了冲，放到嘴里，转过来，用平日里可爱的含含混混的声音对我说：“现在你知道我吃的是什么糖了吧。”</p>
-<p>这篇文的构思大概在两个多月前，因为诸事繁忙，一直拖到现在，却也失去了当时萌生想法时的热情，草草了事算是填坑吧。<br>写于2019年06月14日</p>
+        <p>此文为Causal Inference学习笔记其一,参考教材为Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction(Cambridge University Press),作者为Guido W. Imbens和Donald B. Rubin.</p>
+<p>为了快速理解概念,也训练自己分辨的例子,我将引申作者使用的头疼与吃药的例子来演示各种定义，以及区分一些概念.这一例子的基本命题为:我头疼了,我吃了止疼药,我不头疼了.</p>
+<blockquote>
+<p>A unit is an object applied by a causality.</p>
+</blockquote>
+<p>2019年08月06日03:16:23这一时刻的我就是一个unit.这里要强调不同时刻的我,不可以看作同一个unit,就像晚霜晚上涂在我的脸上护肤,晚霜白天涂在我的脸上光敏了,适得其反,引发皮肤炎症.</p>
+<blockquote>
+<p>Each action-unit pair is assocaited with a potential outcome.</p>
+</blockquote>
+<p>我把某次某刻头疼的我(以下在不引起混淆的情况下，简称为我)和吃止疼药这一action-unit pair和我不头疼了联系在一起，这里存在一种一一对应关系。需要注意的是,这里action-unit pair就能指代那个potential outcome,至于那个结果是我不头疼了还是我仍然头疼了并没有特别强调的意义,仅仅是个值。每次虽然实际上只能看到某一个potential outcome,但是在理论上,每一种potential outcome都先验地存在,例如我和没吃止疼药这一potential outcome并没有被观察到.</p>
+<blockquote>
+<p>The causal effect of the treatment involves the comparison of these<br>two potential outcomes.</p>
+</blockquote>
+<p>在我吃不吃药和药效如何,总共有四种组合：我吃药好了且我不吃药没好,我吃药没好且我不吃药没好,我吃药好了且我不吃药好了,我吃药没好且我不吃药好了.其中,二和三的causal effect都为零.</p>
+<p>鉴于我们对于某一个unit往往只能观察到某一个potential outcome,我们无法建立认知，因此在估计的角度,我们往往要考虑多个unit的情况，用一些近似去在统计上理解问题.例如,我和小诺都在某时某刻头疼了(以下类似地简称小诺),我吃药而小诺不吃药,那么我吃完药后一小时,我和小诺的状态可以用来估计causal effect.一定要注意到这里是估计,因为真实情况是,我和小诺不是一个unit,所以各种各样的情况都会影响到我们想要的美好理论.但为了讨论causal effect,我和小诺同时出场是无法避免的,所以一些良好的假设就需要存在来确保可以把我和小诺看成一个unit.</p>
+<blockquote>
+<p>The Stable Unit Treatment Value Assumption1: The potential outcomes for any unit do not vary with the treatments assigned to other units, and, for each unit, there are no different forms or versions of each treatment level, which lead to different potential outcomes.</p>
+</blockquote>
+<p>先考虑场景如下,我和小诺在一个房间里,面前摆着唯一一颗止疼药,从结果上来看,我吃了止疼药而小诺没有,但在过程中,我为了夺得止疼药的机会,用铁拳暴捶小诺的脑袋十分钟,那么其实,我吃药这件事情影响到了小诺的头疼情况,因为也就违背了上述原则.换一种场景,我和小诺都吃到了止疼药,但是我吃得药没有外包装,我只能单纯期待药效.而小诺则被药瓶花花绿绿地包装蒙蔽了大脑,迷信这个药能治好头疼,毕竟药瓶上吹得天花乱坠,那么很有可能小诺通过自我催眠治好了头疼,而从药效上来说,只是吃药的我还是头疼.上述情况,都影响到了我们的假设,不可取.</p>
+<p>为了估计causal effect,一个重点是我们必须注意到我们需要有不同potential outcome的结果,否则,只能陷入僵局.</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 939946960@qq.com </span>
@@ -333,7 +345,7 @@
 <script src="/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'http://yoursite.com/2019/08/01/牙糖/', // 可选。默认为 location.href
+        id: 'http://yoursite.com/2019/08/05/因果推断之基础/', // 可选。默认为 location.href
         owner: 'RexOrangeChen',
         repo: 'RexOrangeChen.github.io',
         oauth: {
@@ -347,6 +359,46 @@
 
 
 
+    
+        <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async
+        src="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<input type="hidden" id="MathJax-js"
+        value="//cdn.bootcss.com/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML">
+</input>
     
 
 
