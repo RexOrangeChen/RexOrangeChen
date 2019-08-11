@@ -2,9 +2,9 @@
 <html>
 <head><meta name="generator" content="Hexo 3.9.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-  <title>Hello blog | Mr. Jiao</title>
-  <meta name="keywords" content=" 测试 ">
-  <meta name="description" content="Hello blog | Mr. Jiao">
+  <title>因果推断之分配策略 | Mr. Jiao</title>
+  <meta name="keywords" content=" 统计 ">
+  <meta name="description" content="因果推断之分配策略 | Mr. Jiao">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="此文为Causal Inference学习笔记其二,参考教材为Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction(Cambridge University Press),作者为Guido W. Imbens和Donald B. Rubin. 我们已经知道什么是unit,什么是potent">
 <meta name="keywords" content="统计">
@@ -250,9 +250,9 @@
 </aside>
 <div class="post">
     <div class="pjax">
-        <article id="post-MMP" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-因果推断之分配策略" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">Hello blog</h1>
+        <h1 class="article-title">因果推断之分配策略</h1>
     
     <div class="article-meta">
         
@@ -261,19 +261,19 @@
         
         <span class="tag">
             
-            <a href="javascript:" class="color3">测试</a>
+            <a href="javascript:" class="color3">统计</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-        创建时间:<time class="date" title='更新时间: 2019-07-31 16:43:48'>2019-07-31 13:31</time>
+        创建时间:<time class="date" title='更新时间: 2019-08-11 20:18:15'>2019-08-09 23:25</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:12</span>
+        <span>字数:848</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -303,7 +303,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Bernoulli实验"><span class="toc-text">Bernoulli实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完全随机实验"><span class="toc-text">完全随机实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分层随机实验"><span class="toc-text">分层随机实验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配对随机实验"><span class="toc-text">配对随机实验</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -318,9 +318,25 @@
 </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p>测试文章</p>
-<p>$\alpha$</p>
-<script type="math/tex; mode=display">\beta</script><p>$\sum_{i=1}^n e^\alpha$</p>
+        <p>此文为Causal Inference学习笔记其二,参考教材为Causal Inference for Statistics, Social, and Biomedical Sciences: An Introduction(Cambridge University Press),作者为Guido W. Imbens和Donald B. Rubin.</p>
+<p>我们已经知道什么是unit,什么是potential outcome,什么是causal effect,那么为了估计causal effect,往往需要得到一些可以视作一个unit的unit们,然后考虑这一群unit在某一个potential outcome的结果.一个很重要的问题,就是对每个unit分配到哪一个potential outcome.凭什么我头疼了可以吃药,而小诺头疼了只能忍着.在分配机制中,我们需要如下限制</p>
+<blockquote>
+<p>Individualistic assignment: This limits the dependence of a particular unit’s assignment probability on the values of covariates and potential outcomes for other units.</p>
+<p>Probabilistic assignment: This requires the assignment mechanism to imply a nonzero probability for each treatment value, for every unit.</p>
+<p>Unconfounded assignment: This disallows dependence of the assignment mechanism<br>on the potential outcomes.</p>
+</blockquote>
+<p>在研究中,我们依据分配机制可以区分为两种,分配机制已知且被控制的是实验,而分配机制未知或无法控制的是观察性研究.实验例如,我被钦定吃药,而小诺被规定不吃药.观察实验例如,恰好我吃了药,而小诺没吃,我们两都被访问记录了数据.</p>
+<p>考虑一个有N个units的样本,每个unit由一个K维行向量刻画,X是一个$N\times K$维矩阵,刻画了整个样本.X是一个先验存在,不被实验改变的特征信息矩阵.对应于每个unit,有一对potential outcome,$Y_i(0)$和$Y_i(1)$,观察上我们只能看到其中之一,因此,我们其实在考虑一个丢失数据问题.$W$是一个$N$维列向量,记录了哪一个potential outcome被观察到,所以取值为0或1.</p>
+<blockquote>
+<p>A randomized experiment is an assignment mechanism that<br>(i) is probabilistic, and<br>(ii) has a known functional form that is controlled by the researcher</p>
+<p>A classical randomized experiment is a randomized experiment with an assignment<br>mechanism that is<br>(i) individualistic, and<br>(ii) unconfounded.</p>
+</blockquote>
+<p>下面介绍几种简单的分配机制.</p>
+<h3 id="Bernoulli实验"><a href="#Bernoulli实验" class="headerlink" title="Bernoulli实验"></a>Bernoulli实验</h3><p>对于小诺和我,Bernoulli实验会扔一次硬币,正面就吃药,反面就不给吃药,以此类推,有如下公式</p>
+<script type="math/tex; mode=display">\Pr(W|X,Y(0),Y(1))=0.5^N</script><p>一个Bernoulli实验的推广是一个不是等概率的硬币,我们可以得到类似的概率,狡诈的医药公司通过这种方式来吸引大家来参加新药测试,因为相比较于得到安慰剂和真药概率一半一半的医药实验,这种实验更吸引大家参加,因为有更概率自己得到的是真的药,就像人们倾向于参加中奖概率更高的抽奖一样,而对于统计学家,这种情况和一半一半的分配方案差别不大,仅仅是带来计算上的一些复杂而已.然而这一分配机制的问题在于,存在一定尽管微小的概率,所有unit都被分配到同一种potential outcome.</p>
+<h3 id="完全随机实验"><a href="#完全随机实验" class="headerlink" title="完全随机实验"></a>完全随机实验</h3><p>在完全随机试验中,固定数量的我或者小诺会吃到药.</p>
+<h3 id="分层随机实验"><a href="#分层随机实验" class="headerlink" title="分层随机实验"></a>分层随机实验</h3><p>在完全随机试验中,我之中固定数量的我以及小诺之中固定数量的小诺会吃到药.</p>
+<h3 id="配对随机实验"><a href="#配对随机实验" class="headerlink" title="配对随机实验"></a>配对随机实验</h3><p>在配对随机实验中,每一个对我和小诺都只有一个能吃到药.</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 939946960@qq.com </span>
@@ -336,7 +352,7 @@
 <script src="/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
-        id: 'http://yoursite.com/2019/07/31/MMP/', // 可选。默认为 location.href
+        id: 'http://yoursite.com/2019/08/09/因果推断之分配策略/', // 可选。默认为 location.href
         owner: 'RexOrangeChen',
         repo: 'RexOrangeChen.github.io',
         oauth: {
